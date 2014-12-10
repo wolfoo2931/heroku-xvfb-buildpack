@@ -19,8 +19,12 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
 fi
 
 echo "-----> Extracting XVFB binaries to ${BUILD_DIR}/vendor/xvfb"
+echo "-------> mkdir ${CACHE_DIR}/${ARCHIVE_NAME}"
 mkdir -p $CACHE_DIR/$ARCHIVE_NAME
+echo "-------> mkdir ${BUILD_DIR}/vendor"
 mkdir -p $BUILD_DIR/vendor
+echo "-------> tar"
 tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+echo "-------> mv"
 mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/xvfb
 sudo apt-get install xvfb -y
