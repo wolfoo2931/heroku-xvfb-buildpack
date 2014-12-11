@@ -19,4 +19,4 @@ fi
 
 mkdir -p $BUILD_DIR/vendor/xvfb
 
-tar jzxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/xvfb
+tar xvfJ $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/xvfb
