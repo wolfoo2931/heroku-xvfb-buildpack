@@ -4,13 +4,17 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+echo "in buildpack"
+
 FILE_NAME=Xvfb.tar.xz
 BUILDPACK_XVFB_PACKAGE=http://github.com/kenshin23/xvfb-portable-binary/blob/master/${FILE_NAME}?raw=true
+
+echo "specified vars"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching XVFB binaries at ${BUILDPACK_XVFB_PACKAGE}"
-  curl $BUILDPACK_XVFB_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+  wget $BUILDPACK_XVFB_PACKAGE --no-check-certificate -O $CACHE_DIR/$FILE_NAME
 fi
 
 mkdir -p $BUILD_DIR/vendor/xvfb
