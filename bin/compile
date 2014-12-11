@@ -1,18 +1,11 @@
 #!/bin/sh
-
 set -e
 
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-# config
-# http://orm-buildpack.s3.amazonaws.com/Xvfb.tar.gz
-
-# Buildpack URL
-#FILE_NAME=xvfb.tar.bz2
-#BUILDPACK_XVFB_PACKAGE=https://s3.amazonaws.com/heroku.buildpacks/${FILE_NAME}
-FILE_NAME=Xvfb.tar.gz
-BUILDPACK_XVFB_PACKAGE=http://orm-buildpack.s3.amazonaws.com/${FILE_NAME}
+FILE_NAME=Xvfb.tar.xz
+BUILDPACK_XVFB_PACKAGE=http://github.com/kenshin23/xvfb-portable-binary/blob/master/${FILE_NAME}?raw=true
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
@@ -20,18 +13,6 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   curl $BUILDPACK_XVFB_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
 fi
 
-echo "-----> Extracting XVFB binaries to ${BUILD_DIR}/vendor/xvfb"
-echo "-------> mkdir ${CACHE_DIR}/${ARCHIVE_NAME}"
-mkdir -p $CACHE_DIR/$ARCHIVE_NAME
-echo "-------> mkdir ${BUILD_DIR}/vendor"
-mkdir -p $BUILD_DIR/vendor
-echo "-------> tar"
-ls -l $CACHE_DIR/$FILE_NAME 2>&1
-#tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+mkdir -p $BUILD_DIR/vendor/xvfb
 
-tar xfz $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
-echo "-------> mv"
-ls -l $CACHE_DIR/$ARCHIVE_NAME
-ls -l $BUILD_DIR/vendor/
-mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/xvfb 2>&1
-apt-get install xvfb -y
+tar jzxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/xvfb
