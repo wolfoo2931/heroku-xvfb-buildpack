@@ -32,6 +32,6 @@ ls -l $CACHE_DIR/$FILE_NAME 2>&1
 tar xfz $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
 echo "-------> mv"
 ls -l $CACHE_DIR/$ARCHIVE_NAME
-ls -l $BUILD_DIR/vendor/xvfb
+ls -l $BUILD_DIR/vendor/
 mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/xvfb 2>&1
 sudo apt-get install xvfb -y
