@@ -34,4 +34,4 @@ echo "-------> mv"
 ls -l $CACHE_DIR/$ARCHIVE_NAME
 ls -l $BUILD_DIR/vendor/
 mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/xvfb 2>&1
-sudo apt-get install xvfb -y
+apt-get install xvfb -y
